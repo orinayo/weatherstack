@@ -1,0 +1,11 @@
+.textarea {
+  font-style: italic;
+}
+
+.textarea:focus {
+  font-style: normal;
+}
+
+@media (min-width: 768px) {
+    font-size: 1rem;
+}
