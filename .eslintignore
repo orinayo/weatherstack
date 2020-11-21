@@ -1,0 +1,6 @@
+tailwind.config.js
+postcss.config.js
+config-overrides.js
+!.eslintrc
+!.prettierrc
+src/sw.js
