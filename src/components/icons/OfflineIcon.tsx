@@ -4,7 +4,7 @@ import { SvgIcon } from './SvgIcon';
 const OfflineIcon: SvgIcon = ({
   width = 20,
   height = 20,
-  strokeColor = '#ffc200',
+  strokeColor = 'text-yellow-100',
   strokeWidth = 1.2,
   fillColor = 'none',
   classes = '',
