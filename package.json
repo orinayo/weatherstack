@@ -21,6 +21,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-textarea-autosize": "^8.3.0",
+    "react-toastify": "^6.1.0",
     "redux-logger": "^3.0.6",
     "workbox-navigation-preload": "^5.1.4",
     "workbox-precaching": "^5.1.4",
@@ -33,6 +34,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "@react-mock/localstorage": "^0.1.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^7.1.2",
