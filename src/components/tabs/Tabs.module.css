@@ -1,0 +1,194 @@
+.stickyParent {
+  display: unset;
+}
+
+.stickyContainer {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  border-bottom: 1px solid var(--gray-200);
+  border-color: var(--gray-100);
+  background-color: var(--white);
+  width: 100%;
+  margin-top: 1.5rem;
+  display: block;
+}
+
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.column {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  flex-shrink: 0;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.locationItem {
+  align-items: center;
+  color: var(--text-gray-500);
+  line-height: 1.875;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  padding: 0.675rem 1rem;
+  justify-content: center;
+}
+
+.locationCheckbox {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1.25rem;
+  width: 2.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.locationCheckbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.toggleIconContainer {
+  position: relative;
+  display: inline-block;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 9999px;
+  background-color: var(--white);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition-property: all;
+  transform: translateX(var(--transform-translate-x)) translateY(0) rotate(0)
+    skewX(0) skewY(0) scaleX(1) scaleY(1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+.toggleIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: opacity;
+}
+
+.tabsContainer {
+  width: 100%;
+  box-shadow: none;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  justify-content: space-between;
+}
+
+.tabsContainer > nav {
+  justify-content: space-evenly;
+}
+
+.tabLink {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  text-align: center;
+  white-space: nowrap;
+  background-color: initial;
+  color: var(--gray-500);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.36s ease-in;
+  display: block;
+}
+
+.tabLink:focus,
+.tabLink:hover {
+  color: var(--gray-600);
+  text-decoration: none;
+  border-bottom-color: #d1d5da;
+  outline: 1px dotted transparent;
+  outline-offset: -1px;
+  transition-timing-function: ease-out;
+  transition-duration: 0.12s;
+}
+
+.tabLink.selected {
+  font-weight: 600;
+  color: var(--gray-600);
+  border-bottom-color: #ab7281;
+  outline: 1px dotted transparent;
+  outline-offset: -1px;
+}
+
+.tabLink svg {
+  color: #959da5;
+}
+
+.tabLink.selected svg {
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .column:first-child {
+    min-width: 30%;
+    max-width: 30%;
+  }
+
+  .column:last-child {
+    min-width: 70%;
+    max-width: 70%;
+  }
+
+  .locationItem {
+    justify-content: start;
+  }
+
+  .tabsContainer > nav {
+    justify-content: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .row {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+
+  .column {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}

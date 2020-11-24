@@ -1,6 +1,6 @@
 import React, {createRef} from 'react'
 import {render, screen} from '@testing-library/react'
-import TextArea from './TextArea'
+import {TextArea} from './TextArea'
 
 describe('TextArea', () => {
   test(`renders a text area with a placeholder "Write a message"`, () => {
