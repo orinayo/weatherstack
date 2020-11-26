@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  min-width: 50%;
+  max-width: 50%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    grid-column: span 2 / span 2;
+  }
+}
