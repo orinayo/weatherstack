@@ -1,17 +1,16 @@
 import React from 'react'
-import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom'
 import './normalize.css'
 import './index.css'
 import App from './App'
-import {store} from './app/store'
 import * as serviceWorker from './serviceWorker'
+import {CitiesProvider} from 'contexts/cities/citiesContext'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <CitiesProvider>
       <App />
-    </Provider>
+    </CitiesProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

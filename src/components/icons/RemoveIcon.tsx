@@ -1,12 +1,12 @@
 import React from 'react'
 import {SvgIcon} from './SvgIcon'
 
-export const OfflineIcon: SvgIcon = ({
+export const RemoveIcon: SvgIcon = ({
   width = 20,
   height = 20,
-  strokeColor = 'text-yellow-100',
-  strokeWidth = 1.2,
-  fillColor = 'none',
+  strokeColor = 'text-white',
+  strokeWidth = 20,
+  fillColor = 'red',
   classes = '',
 }) => (
   <svg
@@ -17,8 +17,9 @@ export const OfflineIcon: SvgIcon = ({
     viewBox="0 0 512 512"
     className={`stroke-current ${strokeColor} ${classes}`}
   >
+    <title>Close</title>
     <path
-      d="M93.72 183.25C49.49 198.05 16 233.1 16 288c0 66 54 112 120 112h184.37M467.82 377.74C485.24 363.3 496 341.61 496 312c0-59.82-53-85.76-96-88-8.89-89.54-71-144-144-144-26.16 0-48.79 6.93-67.6 18.14"
+      d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z"
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -27,7 +28,7 @@ export const OfflineIcon: SvgIcon = ({
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M448 448L64 64"
+      d="M320 320L192 192M192 320l128-128"
     />
   </svg>
 )
