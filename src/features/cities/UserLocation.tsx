@@ -1,7 +1,25 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styles from './UserLocation.module.css'
 
-export const UserLocation = () => {
+export const UserLocation: FC<{permStatus: string}> = ({permStatus}) => {
+  if (permStatus && permStatus !== 'granted')
+    return (
+      <div className={styles.container}>
+        <div className="flex items-center">
+          <img
+            className={styles.image}
+            src="https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png"
+            alt=""
+          />
+          <div className="pb-1 pt-1 w-full">
+            <h1 className="leading-none pl-2">
+              <span className={styles.date}>You can see your location&apos;s weather if you share it.</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+    )
+
   return (
     <div className={styles.container}>
       <div className="flex items-center">
@@ -21,7 +39,7 @@ export const UserLocation = () => {
         14 <sup className={styles.superscript}>&#8451;</sup>
       </h1>
       <p className="text-gray-600">Berlin, Germany</p>
-      <p className="text-gray-600 pt-1">
+      <p className="text-gray-600 pt-1 text-xs">
         <span>Feels like 11</span> · <span>13% Humidity</span>
       </p>
     </div>

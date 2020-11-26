@@ -1,33 +1,39 @@
-import {CitiesContext} from './citiesContext'
-import {FavoritesContext} from '../favorites/favoritesContext'
 import React, {FC, useContext} from 'react'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import styles from './Cities.module.css'
 import {CityItem} from './CityItem'
 import {UserLocation} from './UserLocation'
+import {CitiesContext} from './citiesContext'
+import {FavoritesContext} from '../favorites/favoritesContext'
+import { EmptyData } from 'components/emptyData/EmptyData'
 
 export const Cities: FC = () => {
   const {cities, removeCity} = useContext(CitiesContext)
   const {favorites, addFavorite, removeFavorite} = useContext(FavoritesContext)
   const citiesList = () =>
-    cities.map(city => (
-      <CSSTransition key={city} timeout={500} classNames="move">
-        <CityItem
-          cityName={city}
-          weatherDesc="sunny"
-          isFavorite={favorites.includes(city)}
-          addFavorite={() => {
-            addFavorite(city)
-          }}
-          removeFavorite={() => {
-            removeFavorite(city)
-          }}
-          onDelete={() => {
-            removeCity(city)
-          }}
-        />
-      </CSSTransition>
-    ))
+    cities.length ? (
+      cities.map(city => (
+        <CSSTransition key={city} timeout={500} classNames="move">
+          <CityItem
+            cityName={city}
+            weatherDesc="sunny"
+            isFavorite={favorites.includes(city)}
+            addFavorite={() => {
+              addFavorite(city)
+            }}
+            removeFavorite={() => {
+              removeFavorite(city)
+            }}
+            onDelete={() => {
+              removeCity(city)
+            }}
+          />
+        </CSSTransition>
+      ))
+    ) : (
+     <EmptyData />
+    )
+    
   return (
     <div className={styles.container}>
       <div className={styles.row}>

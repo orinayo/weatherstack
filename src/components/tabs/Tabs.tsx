@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom'
 import {HeartIcon} from 'components/icons/HeartIcon'
 import {ListIcon} from 'components/icons/ListIcon'
 import styles from './Tabs.module.css'
-import {LocationElem} from './LocationElem'
+import {UserLocation} from '../../features/userLocation/UserLocation'
 
 export const Tabs: FC = () => {
   const {pathname} = useLocation()
@@ -13,7 +13,7 @@ export const Tabs: FC = () => {
         <div className={styles.container}>
           <div className={styles.row}>
             <div className={styles.column}>
-              <LocationElem />
+              <UserLocation />
             </div>
             <div className={styles.column}>
               <div className={styles.tabsContainer}>
