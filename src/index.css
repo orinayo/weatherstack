@@ -77,6 +77,14 @@ svg {
   padding-top: 0.25rem;
 }
 
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -86,7 +94,7 @@ svg {
 }
 
 .ml-4 {
-  margin-left: 0.75rem;
+  margin-left: 1rem;
 }
 
 .mr-1 {
@@ -123,6 +131,10 @@ svg {
 
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-xs {
@@ -163,6 +175,10 @@ svg {
 
 .text-6xl {
   font-size: 4rem;
+}
+
+.leading-none {
+  line-height: 1;
 }
 
 .leading-snug {

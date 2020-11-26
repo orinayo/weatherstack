@@ -8,7 +8,7 @@ import {Searchbar} from 'components/searchbar/Searchbar'
 import {Tabs} from 'components/tabs/Tabs'
 import {Cities} from 'features/cities/Cities'
 import {Favorites} from 'features/favorites/Favorites'
-import {FavoritesProvider} from 'contexts/favorites/favoritesContext'
+import {FavoritesProvider} from 'features/favorites/favoritesContext'
 import styles from './App.module.css'
 
 const App: FC = () => {

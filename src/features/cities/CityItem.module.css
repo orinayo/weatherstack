@@ -95,3 +95,15 @@
 .button:last-child {
   border-bottom-right-radius: 0.5rem;
 }
+
+@media (min-width: 768px) {
+  .weatherDesc {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .weatherDesc {
+    display: inline-block;
+  }
+}

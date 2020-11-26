@@ -4,7 +4,7 @@ import './normalize.css'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import {CitiesProvider} from 'contexts/cities/citiesContext'
+import {CitiesProvider} from 'features/cities/citiesContext'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,5 @@
-import {CitiesContext} from 'contexts/cities/citiesContext'
-import {FavoritesContext} from 'contexts/favorites/favoritesContext'
+import {CitiesContext} from '../cities/citiesContext'
+import {FavoritesContext} from './favoritesContext'
 import React, {FC, useContext} from 'react'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import styles from './Favorites.module.css'
@@ -22,6 +22,7 @@ export const Favorites: FC = () => {
             removeFavorite(city)
           }}
           onDelete={() => {
+            removeFavorite(city)
             removeCity(city)
           }}
         />

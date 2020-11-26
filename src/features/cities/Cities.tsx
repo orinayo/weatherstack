@@ -1,9 +1,10 @@
-import {CitiesContext} from 'contexts/cities/citiesContext'
-import {FavoritesContext} from 'contexts/favorites/favoritesContext'
+import {CitiesContext} from './citiesContext'
+import {FavoritesContext} from '../favorites/favoritesContext'
 import React, {FC, useContext} from 'react'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import styles from './Cities.module.css'
 import {CityItem} from './CityItem'
+import {UserLocation} from './UserLocation'
 
 export const Cities: FC = () => {
   const {cities, removeCity} = useContext(CitiesContext)
@@ -31,7 +32,9 @@ export const Cities: FC = () => {
     <div className={styles.container}>
       <div className={styles.row}>
         <div className={styles.column}>
-          <div></div>
+          <div>
+            <UserLocation />
+          </div>
         </div>
         <div className={styles.column}>
           <div>
