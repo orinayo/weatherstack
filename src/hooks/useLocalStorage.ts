@@ -1,7 +1,7 @@
-import {useState, useEffect} from 'React'
+import {useState, useEffect} from 'react'
 
-export function useLocalStorage(initialState: any, key: string) {
-  const getStateFromLocalStorage = (): any => {
+export function useLocalStorage<T>(initialState: T, key: string) {
+  const getStateFromLocalStorage = (): T => {
     const storage = localStorage.getItem(key)
     if (storage) return JSON.parse(storage)
     return initialState
@@ -14,5 +14,5 @@ export function useLocalStorage(initialState: any, key: string) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
-  return [value, setValue]
+  return {cacheValues: value, updateCacheValues: setValue}
 }
