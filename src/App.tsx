@@ -1,59 +1,36 @@
-import React from 'react';
+import React, {FC} from 'react'
+import {Route, BrowserRouter, Switch} from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.min.css'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
-import {history} from 'utils/history'
-import {OfflineNotification} from './OfflineNotification'
-import { Counter } from './features/counter/Counter';
+import {OfflineNotification} from 'components/offlineNotification/OfflineNotification'
+import {ToastContainer} from 'react-toastify'
+import {Searchbar} from 'components/searchbar/Searchbar'
+import {Tabs} from 'components/tabs/Tabs'
+import {Cities} from 'features/cities/Cities'
+import {Favorites} from 'features/favorites/Favorites'
+import {FavoritesProvider} from 'contexts/favorites/favoritesContext'
+import styles from './App.module.css'
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <OfflineNotification />
+      <ToastContainer />
+      <BrowserRouter>
+        <FavoritesProvider>
+          <Searchbar />
+          <main className={styles.main}>
+            <Tabs />
+            <Switch>
+              <Route exact path="/" component={Cities} />
+              <Route exact path="/favorites" component={Favorites} />
+              {/* <Route exact path="/cities" component={City} /> */}
+            </Switch>
+          </main>
+        </FavoritesProvider>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
