@@ -1,4 +1,4 @@
-import OfflineIcon from 'components/icons/OfflineIcon'
+import {OfflineIcon} from 'components/icons/OfflineIcon'
 import React, {FC} from 'react'
 import classnames from 'classnames'
 import {Detector} from 'react-detect-offline'

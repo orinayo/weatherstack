@@ -11,8 +11,8 @@
   border-color: var(--gray-100);
   background-color: var(--white);
   width: 100%;
-  margin-top: 1.5rem;
   display: block;
+  padding-top: 0.75rem;
 }
 
 .container {
@@ -106,6 +106,18 @@
   justify-content: space-evenly;
 }
 
+.tabsContainer a.selected {
+  font-weight: 600;
+  color: var(--gray-600);
+  border-bottom-color: #ab7281;
+  outline: 1px dotted transparent;
+  outline-offset: -1px;
+}
+
+.tabsContainer a.selected svg {
+  color: inherit;
+}
+
 .tabLink {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
@@ -120,8 +132,7 @@
   display: block;
 }
 
-.tabLink:focus,
-.tabLink:hover {
+.tabsContainer a:hover {
   color: var(--gray-600);
   text-decoration: none;
   border-bottom-color: #d1d5da;
@@ -131,23 +142,15 @@
   transition-duration: 0.12s;
 }
 
-.tabLink.selected {
-  font-weight: 600;
-  color: var(--gray-600);
-  border-bottom-color: #ab7281;
-  outline: 1px dotted transparent;
-  outline-offset: -1px;
-}
-
 .tabLink svg {
   color: #959da5;
 }
 
-.tabLink.selected svg {
-  color: inherit;
-}
-
 @media (min-width: 768px) {
+  .stickyContainer {
+    padding-top: 1rem;
+  }
+
   .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -177,6 +180,10 @@
 }
 
 @media (min-width: 1024px) {
+  .stickyContainer {
+    padding-top: 1.5rem;
+  }
+
   .container {
     padding-left: 2rem;
     padding-right: 2rem;

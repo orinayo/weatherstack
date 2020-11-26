@@ -1,8 +1,8 @@
 import React from 'react'
 import SearchIcon from 'assets/search-icon.png'
-import styles from './Navbar.module.css'
+import styles from './Searchbar.module.css'
 
-export const Navbar = () => {
+export const Searchbar = () => {
   return (
       <nav className="bg-blue-400 shadow">
         <div className={styles.container}>
