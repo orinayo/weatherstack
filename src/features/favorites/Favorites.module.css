@@ -1,0 +1,68 @@
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
+.column {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-shrink: 0;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.citiesList {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    margin-bottom: 0;
+  }
+
+  .column:first-child {
+    min-width: 25%;
+    max-width: 25%;
+  }
+
+  .column:last-child {
+    min-width: 75%;
+    max-width: 75%;
+  }
+
+  .citiesList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container,
+  .column {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .row {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+}
