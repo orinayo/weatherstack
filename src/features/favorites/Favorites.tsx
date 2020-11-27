@@ -1,11 +1,11 @@
-import {CitiesContext} from '../cities/citiesContext'
-import {FavoritesContext} from './favoritesContext'
 import React, {FC, useContext} from 'react'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
-import styles from './Favorites.module.css'
-import {CityItem} from '../cities/CityItem'
-import {UserLocation} from 'features/cities/UserLocation'
 import {EmptyData} from 'components/emptyData/EmptyData'
+import {UserLocationData} from 'features/userLocation/UserLocationData'
+import styles from './Favorites.module.css'
+import {FavoritesContext} from './favoritesContext'
+import {CityItem} from '../cities/CityItem'
+import {CitiesContext} from '../cities/citiesContext'
 
 export const Favorites: FC = () => {
   const {removeCity} = useContext(CitiesContext)
@@ -16,7 +16,6 @@ export const Favorites: FC = () => {
         <CSSTransition key={city} timeout={500} classNames="move">
           <CityItem
             cityName={city}
-            weatherDesc="sunny"
             isFavorite={true}
             addFavorite={() => {
               addFavorite(city)
@@ -39,7 +38,7 @@ export const Favorites: FC = () => {
       <div className={styles.row}>
         <div className={styles.column}>
           <div>
-            <UserLocation />
+            <UserLocationData />
           </div>
         </div>
         <div className={styles.column}>
