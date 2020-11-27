@@ -17,6 +17,6 @@ module.exports = {
     '\\.css$': require.resolve('./style-mock.js'),
   },
   testEnvironment: 'jest-environment-jsdom',
-  setupFiles: ['<rootDir>/src/setupTests.ts'],
+  setupFiles: ['<rootDir>/src/setupTests.ts', "jest-localstorage-mock"],
   coverageThreshold: {},
 }
