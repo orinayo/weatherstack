@@ -5,7 +5,6 @@ import React, {
   FC,
   useEffect,
 } from 'react'
-import log from 'loglevel'
 import {useLocalStorage} from 'hooks/useLocalStorage'
 import {citiesDataReducer, CitiesDataState} from './cityReducer'
 import {
@@ -22,15 +21,9 @@ export const CitiesDataContext = createContext<{
   undoRemoveCityData(): void
 }>({
   citiesData: {},
-  addCityData: newCity => {
-    log.warn(newCity)
-  },
-  removeCityData: city => {
-    log.warn(city)
-  },
-  undoRemoveCityData: () => {
-    log.warn('hello')
-  },
+  addCityData: newCity => {},
+  removeCityData: city => {},
+  undoRemoveCityData: () => {},
 })
 
 const initialCitiesData: Record<string, City> = {}

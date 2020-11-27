@@ -5,9 +5,10 @@ module.exports = {
   moduleDirectories: ['node_modules', path.join(__dirname, 'src')],
   collectCoverageFrom: [
     '**/src/**/*.ts',
-    '!**/__tests__/**',
-
+    '!**/tests/**',
     '!**/node_modules/**',
+    '!src/index.ts',
+    '!src/serviceWorker.ts',
   ],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
@@ -17,6 +18,6 @@ module.exports = {
     '\\.css$': require.resolve('./style-mock.js'),
   },
   testEnvironment: 'jest-environment-jsdom',
-  setupFiles: ['<rootDir>/src/setupTests.ts', "jest-localstorage-mock"],
+  setupFiles: ['<rootDir>/src/setupTests.ts', 'jest-localstorage-mock'],
   coverageThreshold: {},
 }

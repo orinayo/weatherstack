@@ -9,7 +9,7 @@ import {CitiesDataContext} from 'features/city/cityContext'
 type Props = {
   cityName: string
   onDelete: () => void
-  addFavorite: () => void
+  addFavorite?: () => void
   removeFavorite: () => void
   isFavorite: boolean
 }

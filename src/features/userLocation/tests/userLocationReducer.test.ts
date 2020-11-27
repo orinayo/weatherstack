@@ -3,7 +3,7 @@ import {
   SET_SUBSCRIBED,
   SET_COORDINATES,
 } from '../userLocationConstants'
-import {userLocationReducer} from '../userLocationReducer'
+import {userLocationReducer, UserLocationActions} from '../userLocationReducer'
 
 describe('userLocationReducer', () => {
   test('set permission status', () => {
@@ -61,6 +61,26 @@ describe('userLocationReducer', () => {
       ),
     ).toEqual({
       coords: {lat: 12.2323, lon: 5.024},
+      isSubscribed: false,
+      permStatus: '',
+    })
+  })
+
+  test('returns initial state if action type does not match', () => {
+    const fooAction = ({
+      type: 'FOO',
+    } as unknown) as UserLocationActions
+    expect(
+      userLocationReducer(
+        {
+          coords: {lat: 0, lon: 0},
+          isSubscribed: false,
+          permStatus: '',
+        },
+        fooAction,
+      ),
+    ).toEqual({
+      coords: {lat: 0, lon: 0},
       isSubscribed: false,
       permStatus: '',
     })

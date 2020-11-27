@@ -6,7 +6,6 @@ import React, {
   useEffect,
 } from 'react'
 import {toast} from 'react-toastify'
-import log from 'loglevel'
 import {favoritesReducer, FavoritesState} from './favoritesReducer'
 import {
   ADD_FAVORITE,
@@ -15,7 +14,7 @@ import {
 } from './favoritesConstants'
 import {useLocalStorage} from 'hooks/useLocalStorage'
 import {useLocation} from 'react-router'
-import { ToastMsg } from 'components/toastMsg/toastMsg'
+import {ToastMsg} from 'components/toastMsg/toastMsg'
 
 export const FavoritesContext = createContext<{
   favorites: string[]
@@ -28,15 +27,9 @@ export const FavoritesContext = createContext<{
   favorites: [],
   isPast: false,
   isFuture: false,
-  addFavorite: newCity => {
-    log.warn(newCity)
-  },
-  removeFavorite: city => {
-    log.warn(city)
-  },
-  undoRemoveFavorite: () => {
-    log.warn('hello')
-  },
+  addFavorite: newCity => {},
+  removeFavorite: city => {},
+  undoRemoveFavorite: () => {},
 })
 
 const initialFavorites: string[] = []
@@ -78,7 +71,12 @@ export const FavoritesProvider: FC = ({children}) => {
         payload: city,
       })
       if (favorites.length && pathname === '/favorites') {
-        toast(<ToastMsg undoDelete={undoRemoveFavorite} message={`${city} has been unliked`} />)
+        toast(
+          <ToastMsg
+            undoDelete={undoRemoveFavorite}
+            message={`${city} has been unliked`}
+          />,
+        )
       }
     },
     [favorites.length, pathname, undoRemoveFavorite],

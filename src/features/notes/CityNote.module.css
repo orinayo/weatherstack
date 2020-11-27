@@ -7,27 +7,46 @@
 
 .container {
   display: block;
-  padding: 0.75rem 0.5rem;
+  padding: 1rem;
   border-top: 1px solid;
   border-color: var(--gray-200);
 }
-.content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.text {
-  color: var(--black);
-  font-size: 0.875rem;
-  text-align: justify;
-  max-width: 90%;
-}
-.timestamp {
-  color: var(--gray-400);
+
+.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.25rem;
+}
+
+.content:last-child {
+  margin-left: 1.25rem;
+  flex-shrink: 0;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.dropdown {
+  margin-left: 1.25rem;
+  flex-shrink: 0;
+}
+
+.dropdown svg {
+  fill: rgba(203, 213, 224, var(--gray-200));
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.timestamp {
+  color: var(--gray-400);
+  display: flex;
+  align-items: center;
 }
 
 .timestamp > time {

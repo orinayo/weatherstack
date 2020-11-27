@@ -1,5 +1,9 @@
-import {ADD_CITY_DATA, REMOVE_CITY_DATA, UNDO_REMOVE_CITY_DATA} from './cityConstants'
-import { City } from './City.types'
+import {
+  ADD_CITY_DATA,
+  REMOVE_CITY_DATA,
+  UNDO_REMOVE_CITY_DATA,
+} from './cityConstants'
+import {City} from './City.types'
 
 type AddCityDataAction = {
   type: typeof ADD_CITY_DATA
@@ -21,7 +25,10 @@ export type CitiesDataState = {
   future: Record<string, City>[]
 }
 
-type CitiesDataActions = AddCityDataAction | RemoveCityDataAction | UndoRemoveCityDataAction
+export type CitiesDataActions =
+  | AddCityDataAction
+  | RemoveCityDataAction
+  | UndoRemoveCityDataAction
 
 export const citiesDataReducer = (
   state: CitiesDataState,
@@ -30,7 +37,7 @@ export const citiesDataReducer = (
   if (action.type === ADD_CITY_DATA) {
     const newPresent = {
       ...state.present,
-      [action.payload.cityName]: action.payload.newCity
+      [action.payload.cityName]: action.payload.newCity,
     }
 
     return {

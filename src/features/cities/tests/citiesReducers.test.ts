@@ -1,5 +1,5 @@
 import {ADD_CITY, REMOVE_CITY, UNDO_REMOVE_CITY} from '../citiesConstants'
-import {citiesReducer} from '../citiesReducer'
+import {citiesReducer, CitiesActions} from '../citiesReducer'
 
 describe('citiesReducer', () => {
   test('adds a city', () => {
@@ -72,6 +72,26 @@ describe('citiesReducer', () => {
       past: [['Paris'], []],
       present: ['New York', 'Paris'],
       future: [['Paris']],
+    })
+  })
+
+  test('returns initial state if action type does not match', () => {
+    const fooAction = ({
+      type: 'FOO',
+    } as unknown) as CitiesActions
+    expect(
+      citiesReducer(
+        {
+          past: [['New York', 'Paris'], ['Paris'], []],
+          present: ['Paris'],
+          future: [],
+        },
+        fooAction,
+      ),
+    ).toEqual({
+      past: [['New York', 'Paris'], ['Paris'], []],
+      present: ['Paris'],
+      future: [],
     })
   })
 })

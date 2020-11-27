@@ -14,7 +14,7 @@ export const UserLocation: FC = () => {
         No Geolocation support.
       </p>
     )
-
+    
   if (permStatus === 'denied')
     return (
       <p role="alert" className={styles.container}>

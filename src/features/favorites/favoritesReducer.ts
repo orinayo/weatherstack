@@ -24,7 +24,7 @@ export type FavoritesState = {
   future: Array<string>[]
 }
 
-type FavoritesActions =
+export type FavoritesActions =
   | AddFavoriteAction
   | RemoveFavoriteAction
   | UndoRemoveFavoriteAction

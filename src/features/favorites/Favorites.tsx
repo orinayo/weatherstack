@@ -9,7 +9,7 @@ import {CitiesContext} from '../cities/citiesContext'
 
 export const Favorites: FC = () => {
   const {removeCity} = useContext(CitiesContext)
-  const {favorites, addFavorite, removeFavorite} = useContext(FavoritesContext)
+  const {favorites, removeFavorite} = useContext(FavoritesContext)
   const citiesList = () =>
     favorites.length ? (
       favorites.map(city => (
@@ -17,9 +17,6 @@ export const Favorites: FC = () => {
           <CityItem
             cityName={city}
             isFavorite={true}
-            addFavorite={() => {
-              addFavorite(city)
-            }}
             removeFavorite={() => {
               removeFavorite(city)
             }}

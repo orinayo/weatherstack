@@ -25,7 +25,7 @@ export type UserLocationState = {
   permStatus: string
 }
 
-type UserLocationActions =
+export type UserLocationActions =
   | SetPermStatusAction
   | SetSubscribedAction
   | SetCoordinatesAction

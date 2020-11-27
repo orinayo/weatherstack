@@ -6,7 +6,6 @@ import React, {
   useEffect,
 } from 'react'
 import {toast} from 'react-toastify'
-import log from 'loglevel'
 import {citiesReducer, CitiesState} from './citiesReducer'
 import {
   ADD_CITY,
@@ -28,15 +27,9 @@ export const CitiesContext = createContext<{
   cities: [],
   isPast: false,
   isFuture: false,
-  addCity: newCity => {
-    log.warn(newCity)
-  },
-  removeCity: city => {
-    log.warn(city)
-  },
-  undoRemoveCity: () => {
-    log.warn('hello')
-  },
+  addCity: newCity => {},
+  removeCity: city => {},
+  undoRemoveCity: () => {},
 })
 
 export const CitiesProvider: FC = ({children}) => {

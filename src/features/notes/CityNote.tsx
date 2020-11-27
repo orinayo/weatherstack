@@ -1,23 +1,36 @@
+import React, {FC} from 'react'
 import {RemoveIcon} from 'components/icons/RemoveIcon'
+import {DropdownIcon} from 'components/icons/DropdownIcon'
 import styles from './CityNote.module.css'
-import React from 'react'
 
-type Note = {
+export type Note = {
   createdAt: string
-  title: string
+  text: string
 }
-interface Props {
+
+type Props = {
   note: Note
   onDelete: () => void
 }
 
-const CityNote = ({note, onDelete}: Props) => {
+export const CityNote: FC<Props> = ({note, onDelete}) => {
   return (
     <div className={styles.container}>
-      <div className={styles.content}>
-        <div className="px-4 py-4 flex sm:px-6">
-          <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
-            <div className={styles.text}>{note.title}</div>
+      <div className={styles.row}>
+        <div className={styles.text}>{note.text}</div>
+        <div>
+          <span className={styles.dropdwon}>
+            <DropdownIcon />
+          </span>
+        </div>
+      </div>
+      <div className={styles.row}>
+        <div>
+          <div>
+            <small className={styles.timestamp}>
+              Created on
+              <time dateTime={note.createdAt}>{note.createdAt}</time>
+            </small>
           </div>
         </div>
         <div>
@@ -26,16 +39,6 @@ const CityNote = ({note, onDelete}: Props) => {
           </button>
         </div>
       </div>
-      <div className="mt-2 flex">
-        <div>
-          <small className={styles.timestamp}>
-            Created on
-            <time dateTime={note.createdAt}>{note.createdAt}</time>
-          </small>
-        </div>
-      </div>
     </div>
   )
 }
-
-export default CityNote

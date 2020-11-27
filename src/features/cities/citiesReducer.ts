@@ -20,7 +20,7 @@ export type CitiesState = {
   future: Array<string>[]
 }
 
-type CitiesActions = AddCityAction | RemoveCityAction | UndoRemoveCityAction
+export type CitiesActions = AddCityAction | RemoveCityAction | UndoRemoveCityAction
 
 export const citiesReducer = (
   state: CitiesState,

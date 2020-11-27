@@ -3,7 +3,7 @@ import {
   REMOVE_FAVORITE,
   UNDO_REMOVE_FAVORITE,
 } from '../favoritesConstants'
-import {favoritesReducer} from '../favoritesReducer'
+import {favoritesReducer, FavoritesActions} from '../favoritesReducer'
 
 describe('favoritesReducer', () => {
   test('adds a city', () => {
@@ -76,6 +76,26 @@ describe('favoritesReducer', () => {
       past: [['Paris'], []],
       present: ['New York', 'Paris'],
       future: [['Paris']],
+    })
+  })
+
+  test('returns initial state if action type does not match', () => {
+    const fooAction = ({
+      type: 'FOO',
+    } as unknown) as FavoritesActions
+    expect(
+      favoritesReducer(
+        {
+          past: [['New York', 'Paris'], ['Paris'], []],
+          present: ['Paris'],
+          future: [],
+        },
+        fooAction,
+      ),
+    ).toEqual({
+      past: [['New York', 'Paris'], ['Paris'], []],
+      present: ['Paris'],
+      future: [],
     })
   })
 })

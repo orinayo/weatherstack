@@ -7,7 +7,6 @@ import React, {
   useContext,
 } from 'react'
 import {toast} from 'react-toastify'
-import log from 'loglevel'
 import {useLocalStorage} from 'hooks/useLocalStorage'
 import {userLocationReducer, UserLocationState} from './userLocationReducer'
 import {
@@ -28,9 +27,7 @@ export const UserLocationContext = createContext<{
   isSubscribed: false,
   permStatus: '',
   userLocationData: null,
-  getLocation: () => {
-    log.warn('getLocation')
-  },
+  getLocation: () => {},
 })
 
 const initialCoords = {lat: 0, lon: 0}

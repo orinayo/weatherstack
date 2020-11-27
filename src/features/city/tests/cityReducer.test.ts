@@ -3,8 +3,8 @@ import {
   REMOVE_CITY_DATA,
   UNDO_REMOVE_CITY_DATA,
 } from '../cityConstants'
-import {citiesDataReducer} from '../cityReducer'
-import { sampleCity } from './cityFixture'
+import {citiesDataReducer, CitiesDataActions} from '../cityReducer'
+import {sampleCity} from './cityFixture'
 
 describe('citiesDataReducer', () => {
   test('adds a city', () => {
@@ -63,6 +63,26 @@ describe('citiesDataReducer', () => {
       past: [{}],
       present: {'Oakland Gardens': sampleCity},
       future: [{}],
+    })
+  })
+
+  test('returns initial state if action type does not match', () => {
+    const fooAction = ({
+      type: 'FOO',
+    } as unknown) as CitiesDataActions
+    expect(
+      citiesDataReducer(
+        {
+          past: [{'Oakland Gardens': sampleCity}, {}],
+          present: {},
+          future: [],
+        },
+        fooAction,
+      ),
+    ).toEqual({
+      past: [{'Oakland Gardens': sampleCity}, {}],
+      present: {},
+      future: [],
     })
   })
 })

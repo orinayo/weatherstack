@@ -48,7 +48,11 @@ export const UserLocationData: FC = () => {
   return (
     <div className={styles.container}>
       <div className="flex items-center">
-        <img className={styles.image} src={cityData.image} alt="" />
+        <img
+          className={styles.image}
+          src={cityData.image}
+          alt={cityData.location}
+        />
         <div className="pb-1 pt-1 w-full">
           <h1 className="leading-none pl-2">
             <span className={styles.today}>Today</span>
@@ -56,7 +60,7 @@ export const UserLocationData: FC = () => {
           </h1>
         </div>
       </div>
-      <h1 className="text-6xl text-center">
+      <h1 data-testid="city-temp" className="text-6xl text-center">
         {cityData.temperature ? (
           <>
             {cityData.temperature}
