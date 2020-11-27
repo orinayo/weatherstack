@@ -8,7 +8,7 @@ import React, {
 import {toast} from 'react-toastify'
 import log from 'loglevel'
 import {citiesReducer, CitiesState} from './citiesReducer'
-import {ADD_CITY, REMOVE_CITY, UNDO_REMOVE_CITY} from './citiesConstants'
+import {ADD_CITY, initialCities, REMOVE_CITY, UNDO_REMOVE_CITY} from './citiesConstants'
 import {useLocalStorage} from 'hooks/useLocalStorage'
 
 export const CitiesContext = createContext<{
@@ -32,24 +32,6 @@ export const CitiesContext = createContext<{
     log.warn('hello')
   },
 })
-
-const initialCities = [
-  'Beijing',
-  'Buenos Aires',
-  'Cairo',
-  'Chongqing',
-  'Delhi',
-  'Dhaka',
-  'Istanbul',
-  'Karachi',
-  'Mexico City',
-  'Mumbai',
-  'New York',
-  'Osaka',
-  'Sao Paulo',
-  'Shanghai',
-  'Tokyo',
-]
 
 const Msg: FC<{undoDelete: () => void; city: string}> = ({
   undoDelete,

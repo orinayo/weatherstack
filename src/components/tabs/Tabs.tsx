@@ -2,8 +2,8 @@ import React, {FC} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {HeartIcon} from 'components/icons/HeartIcon'
 import {ListIcon} from 'components/icons/ListIcon'
+import {UserLocation} from 'features/userLocation/UserLocation'
 import styles from './Tabs.module.css'
-import {UserLocation} from '../../features/userLocation/UserLocation'
 
 export const Tabs: FC = () => {
   const {pathname} = useLocation()
