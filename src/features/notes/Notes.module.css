@@ -1,0 +1,35 @@
+.button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-width: 1px;
+  border-color: transparent;
+}
+
+.container {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  border-top: 1px solid;
+  border-color: var(--gray-200);
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.text {
+  color: var(--black);
+  font-size: 0.875rem;
+  text-align: justify;
+  max-width: 90%;
+}
+.timestamp {
+  color: var(--gray-400);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.timestamp > time {
+  margin-left: 0.25rem;
+}

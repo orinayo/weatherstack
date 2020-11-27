@@ -15,6 +15,7 @@ import {
 } from './favoritesConstants'
 import {useLocalStorage} from 'hooks/useLocalStorage'
 import {useLocation} from 'react-router'
+import { ToastMsg } from 'components/toastMsg/toastMsg'
 
 export const FavoritesContext = createContext<{
   favorites: string[]
@@ -39,18 +40,6 @@ export const FavoritesContext = createContext<{
 })
 
 const initialFavorites: string[] = []
-
-const Msg: FC<{undoDelete: () => void; city: string}> = ({
-  undoDelete,
-  city,
-}) => (
-  <div className="text-sm flex items-center justify-around">
-    <p>{city} has been unliked</p>
-    <button className="align-center btn" onClick={undoDelete}>
-      Undo
-    </button>
-  </div>
-)
 
 export const FavoritesProvider: FC = ({children}) => {
   const {cacheValues, updateCacheValues} = useLocalStorage(
@@ -89,7 +78,7 @@ export const FavoritesProvider: FC = ({children}) => {
         payload: city,
       })
       if (favorites.length && pathname === '/favorites') {
-        toast.info(<Msg undoDelete={undoRemoveFavorite} city={city} />)
+        toast(<ToastMsg undoDelete={undoRemoveFavorite} message={`${city} has been unliked`} />)
       }
     },
     [favorites.length, pathname, undoRemoveFavorite],

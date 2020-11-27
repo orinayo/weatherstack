@@ -30,7 +30,8 @@ export type City = {
     humidity: number
     cloudcover: number
     feelslike: number
-    uv_index: 4
+    uv_index: number
     visibility: number
+    is_day: string
   }
 }

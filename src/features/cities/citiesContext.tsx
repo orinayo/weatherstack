@@ -8,8 +8,14 @@ import React, {
 import {toast} from 'react-toastify'
 import log from 'loglevel'
 import {citiesReducer, CitiesState} from './citiesReducer'
-import {ADD_CITY, initialCities, REMOVE_CITY, UNDO_REMOVE_CITY} from './citiesConstants'
+import {
+  ADD_CITY,
+  initialCities,
+  REMOVE_CITY,
+  UNDO_REMOVE_CITY,
+} from './citiesConstants'
 import {useLocalStorage} from 'hooks/useLocalStorage'
+import {ToastMsg} from 'components/toastMsg/toastMsg'
 
 export const CitiesContext = createContext<{
   cities: string[]
@@ -32,18 +38,6 @@ export const CitiesContext = createContext<{
     log.warn('hello')
   },
 })
-
-const Msg: FC<{undoDelete: () => void; city: string}> = ({
-  undoDelete,
-  city,
-}) => (
-  <div className="text-sm flex items-center justify-around">
-    <p>{city} has been removed</p>
-    <button className="align-center btn" onClick={undoDelete}>
-      Undo
-    </button>
-  </div>
-)
 
 export const CitiesProvider: FC = ({children}) => {
   const {cacheValues, updateCacheValues} = useLocalStorage(
@@ -81,7 +75,12 @@ export const CitiesProvider: FC = ({children}) => {
         payload: city,
       })
       if (cities.length) {
-        toast.info(<Msg undoDelete={undoRemoveCity} city={city} />)
+        toast(
+          <ToastMsg
+            undoDelete={undoRemoveCity}
+            message={`${city} has been removed`}
+          />,
+        )
       }
     },
     [cities.length, undoRemoveCity],

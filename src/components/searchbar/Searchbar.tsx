@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState, FC} from 'react'
 import SearchIcon from 'assets/search-icon.png'
 import {useDebounce} from 'hooks/useDebounce'
 import {City} from 'features/city/City.types'
@@ -7,13 +7,31 @@ import {CitiesContext} from 'features/cities/citiesContext'
 import styles from './Searchbar.module.css'
 import {CitiesDataContext} from 'features/city/cityContext'
 
+export const SearchItem: FC<{response: City; handleAddCity: () => void}> = ({
+  response,
+  handleAddCity,
+}) => (
+  <div tabIndex={-1} className={styles.city}>
+    <span className={styles.cityName}>
+      {response.location.name}, {response.location.country}
+    </span>
+    <div role="button" onClick={handleAddCity} className={styles.button}>
+      Add&nbsp;<span>+</span>
+    </div>
+    <div role="button" className={styles.button}>
+      View&nbsp;<span>↵</span>
+    </div>
+  </div>
+)
+
 export const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [query, setQuery] = useState('')
-  const url = query
-    ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
-    : ''
-  const {loading, response, error} = useFetch<City>(url)
+  const {loading, response, error} = useFetch<City>(
+    query
+      ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
+      : '',
+  )
   const {addCityData} = useContext(CitiesDataContext)
   const {addCity} = useContext(CitiesContext)
   const debouncedTerm = useDebounce(searchTerm, 500)
@@ -79,24 +97,15 @@ export const Searchbar = () => {
                           className={styles.item}
                         >
                           {loading ? (
-                            <div className={styles.loader} />
+                            <div
+                              data-testid="search-loader"
+                              className={styles.loader}
+                            />
                           ) : response ? (
-                            <div tabIndex={-1} className={styles.city}>
-                              <span className={styles.cityName}>
-                                {response.location.name},{' '}
-                                {response.location.country}
-                              </span>
-                              <div
-                                role="button"
-                                onClick={handleAddCity}
-                                className={styles.button}
-                              >
-                                Add&nbsp;<span>+</span>
-                              </div>
-                              <div role="button" className={styles.button}>
-                                View&nbsp;<span>↵</span>
-                              </div>
-                            </div>
+                            <SearchItem
+                              response={response}
+                              handleAddCity={handleAddCity}
+                            />
                           ) : error ? (
                             <span className={styles.cityName}>{error}</span>
                           ) : null}
