@@ -11,6 +11,7 @@ import {Favorites} from 'features/favorites/Favorites'
 import {FavoritesProvider} from 'features/favorites/favoritesContext'
 import styles from './App.module.css'
 import {UserLocationProvider} from 'features/userLocation/userLocationContext'
+import {CitiesDataProvider} from 'features/city/cityContext'
 
 const App: FC = () => {
   return (
@@ -21,14 +22,16 @@ const App: FC = () => {
         <FavoritesProvider>
           <Searchbar />
           <main className={styles.main}>
-            <UserLocationProvider>
-              <Tabs />
-              <Switch>
-                <Route exact path="/" component={Cities} />
-                <Route exact path="/favorites" component={Favorites} />
-                {/* <Route exact path="/cities" component={City} /> */}
-              </Switch>
-            </UserLocationProvider>
+            <CitiesDataProvider>
+              <UserLocationProvider>
+                <Tabs />
+                <Switch>
+                  <Route exact path="/" component={Cities} />
+                  <Route exact path="/favorites" component={Favorites} />
+                  {/* <Route exact path="/cities" component={City} /> */}
+                </Switch>
+              </UserLocationProvider>
+            </CitiesDataProvider>
           </main>
         </FavoritesProvider>
       </BrowserRouter>

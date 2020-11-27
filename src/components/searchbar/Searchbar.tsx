@@ -5,6 +5,7 @@ import {City} from 'features/city/City.types'
 import {useFetch} from 'hooks/useFetch'
 import {CitiesContext} from 'features/cities/citiesContext'
 import styles from './Searchbar.module.css'
+import {CitiesDataContext} from 'features/city/cityContext'
 
 export const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState('')
@@ -13,6 +14,7 @@ export const Searchbar = () => {
     ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
     : ''
   const {loading, response, error} = useFetch<City>(url)
+  const {addCityData} = useContext(CitiesDataContext)
   const {addCity} = useContext(CitiesContext)
   const debouncedTerm = useDebounce(searchTerm, 500)
   const handleSearchChange = (
@@ -24,6 +26,7 @@ export const Searchbar = () => {
   const handleAddCity = () => {
     if (response) {
       addCity(response.request.query)
+      addCityData({cityName: response.request.query, newCity: response})
     }
   }
 

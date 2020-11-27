@@ -1,7 +1,7 @@
 import React, {FC, useRef} from 'react'
 import {TextArea} from 'components/textArea/TextArea'
 
-export const City: FC = () => {
+export const CityDetails: FC = () => {
   const inputRef = useRef<HTMLTextAreaElement>(null)
   return (
       
