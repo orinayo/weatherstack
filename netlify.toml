@@ -10,6 +10,6 @@
 
 [[redirects]]
   from = "/feed/*"
-  to = "`http://api.weatherstack.com/:splat"
+  to = "http://api.weatherstack.com/:splat"
   status = 200
   force = true
