@@ -1,4 +1,4 @@
-  import React, {useContext, useEffect, useState, FC} from 'react'
+import React, {useContext, useEffect, useState, FC} from 'react'
 import SearchIcon from 'assets/search-icon.png'
 import {useDebounce} from 'hooks/useDebounce'
 import {City} from 'features/city/City.types'
@@ -32,7 +32,7 @@ export const Searchbar = () => {
   const history = useHistory()
   const {loading, response, error} = useFetch<City>(
     query
-      ? `/feed/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
+      ? `${process.env.REACT_APP_WEATHERSTACK_API_BASE_URL}/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
       : '',
   )
   const {addCityData} = useContext(CitiesDataContext)
