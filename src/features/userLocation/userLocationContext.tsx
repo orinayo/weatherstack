@@ -127,7 +127,7 @@ export const UserLocationProvider: FC = ({children}) => {
 
   const url =
     coordinates.lat !== 0
-      ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${coordinates.lat},${coordinates.lon}`
+      ? `/feed/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${coordinates.lat},${coordinates.lon}`
       : ''
   const {response: apiResponse} = useFetch<City>(url)
 

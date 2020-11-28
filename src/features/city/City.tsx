@@ -19,7 +19,7 @@ export const CityData: FC = () => {
     CitiesNoteContext,
   )
   const {addCityData, citiesData} = useContext(CitiesDataContext)
-  const url = `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${city}`
+  const url = `/feed/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${city}`
   const {loading, response} = useFetch<City>(url)
 
   const cityNotes = citiesNote[city]

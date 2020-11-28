@@ -54,7 +54,7 @@ export const CityItem: FC<Props> = ({
 
   const {addCityData, citiesData} = useContext(CitiesDataContext)
 
-  const url = `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${cityName}`
+  const url = `/feed/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${cityName}`
   const {loading, response} = useFetch<City>(url)
 
   useEffect(() => {

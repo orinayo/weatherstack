@@ -32,7 +32,7 @@ export const Searchbar = () => {
   const history = useHistory()
   const {loading, response, error} = useFetch<City>(
     query
-      ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
+      ? `/feed/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
       : '',
   )
   const {addCityData} = useContext(CitiesDataContext)
