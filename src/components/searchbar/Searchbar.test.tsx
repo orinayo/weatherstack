@@ -22,7 +22,13 @@ describe('Searchbar', () => {
 
 describe('SearchItem', () => {
   test(`renders response location name and country`, () => {
-    render(<SearchItem response={sampleCity} handleAddCity={jest.fn} />)
+    render(
+      <SearchItem
+        response={sampleCity}
+        handleAddCity={jest.fn}
+        handleViewCity={jest.fn}
+      />,
+    )
     expect(
       screen.getByText(/oakland gardens, united states of america/i),
     ).toBeInTheDocument()
@@ -30,8 +36,27 @@ describe('SearchItem', () => {
 
   test(`calls handleAddCity when add button is clicked`, () => {
     const handleAddCity = jest.fn()
-    render(<SearchItem response={sampleCity} handleAddCity={handleAddCity} />)
+    render(
+      <SearchItem
+        response={sampleCity}
+        handleAddCity={handleAddCity}
+        handleViewCity={jest.fn}
+      />,
+    )
     user.click(screen.getByText(/add/i))
     expect(handleAddCity).toHaveBeenCalledTimes(1)
+  })
+
+  test(`calls handleViewCity when view button is clicked`, () => {
+    const handleViewCity = jest.fn()
+    render(
+      <SearchItem
+        response={sampleCity}
+        handleAddCity={jest.fn}
+        handleViewCity={handleViewCity}
+      />,
+    )
+    user.click(screen.getByText(/view/i))
+    expect(handleViewCity).toHaveBeenCalledTimes(1)
   })
 })

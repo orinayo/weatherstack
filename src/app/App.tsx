@@ -9,19 +9,11 @@ import {Tabs} from 'components/tabs/Tabs'
 import {FavoritesProvider} from 'features/favorites/favoritesContext'
 import {UserLocationProvider} from 'features/userLocation/userLocationContext'
 import {CitiesDataProvider} from 'features/city/cityContext'
+import {CitiesNoteProvider} from 'features/notes/citiesNotesContext'
+import {Cities} from 'features/cities/Cities'
+import {CityData} from 'features/city/City'
+import {Favorites} from 'features/favorites/Favorites'
 import styles from './App.module.css'
-
-const Cities = React.lazy(() =>
-  import('features/cities/Cities').then(module => ({
-    default: module.Cities,
-  })),
-)
-
-const Favorites = React.lazy(() =>
-  import('features/favorites/Favorites').then(module => ({
-    default: module.Favorites,
-  })),
-)
 
 const App: FC = () => {
   useEffect(() => {
@@ -45,14 +37,16 @@ const App: FC = () => {
           <main className={styles.main}>
             <CitiesDataProvider>
               <UserLocationProvider>
-                <Tabs />
-                <Suspense fallback={<div />}>
-                  <Switch>
-                    <Route exact path="/" component={Cities} />
-                    <Route exact path="/favorites" component={Favorites} />
-                    {/* <Route exact path="/cities" component={City} /> */}
-                  </Switch>
-                </Suspense>
+                <CitiesNoteProvider>
+                  <Tabs />
+                  <Suspense fallback={<div />}>
+                    <Switch>
+                      <Route exact path="/" component={Cities} />
+                      <Route exact path="/favorites" component={Favorites} />
+                      <Route exact path="/city/:city" component={CityData} />
+                    </Switch>
+                  </Suspense>
+                </CitiesNoteProvider>
               </UserLocationProvider>
             </CitiesDataProvider>
           </main>

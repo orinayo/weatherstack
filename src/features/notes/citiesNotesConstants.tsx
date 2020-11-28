@@ -1,0 +1,3 @@
+export const ADD_CITY_NOTE = 'ADD_CITY_NOTE'
+export const REMOVE_CITY_NOTE = 'REMOVE_CITY_NOTE'
+export const EDIT_CITY_NOTE = 'EDIT_CITY_NOTE'

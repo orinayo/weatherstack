@@ -21,8 +21,8 @@ export const CitiesDataContext = createContext<{
   undoRemoveCityData(): void
 }>({
   citiesData: {},
-  addCityData: newCity => {},
-  removeCityData: city => {},
+  addCityData: _newCity => {},
+  removeCityData: _city => {},
   undoRemoveCityData: () => {},
 })
 

@@ -14,7 +14,7 @@ export const UserLocation: FC = () => {
         No Geolocation support.
       </p>
     )
-    
+
   if (permStatus === 'denied')
     return (
       <p role="alert" className={styles.container}>
@@ -25,7 +25,7 @@ export const UserLocation: FC = () => {
   if (permStatus === 'granted')
     return (
       <p role="alert" className={styles.container}>
-        Your location: {userLocationData?.location.name || ''}
+        Your location: {userLocationData?.location?.name || ''}
       </p>
     )
 

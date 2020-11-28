@@ -27,8 +27,8 @@ export const CitiesContext = createContext<{
   cities: [],
   isPast: false,
   isFuture: false,
-  addCity: newCity => {},
-  removeCity: city => {},
+  addCity: _newCity => {},
+  removeCity: _city => {},
   undoRemoveCity: () => {},
 })
 

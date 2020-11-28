@@ -26,7 +26,7 @@ export const UserLocationData: FC = () => {
     )
 
   const cityData = (() => {
-    if (userLocationData)
+    if (userLocationData?.location)
       return {
         image: userLocationData.current.weather_icons[0],
         currDate: userLocationData.location.localtime.split(' ')[0],

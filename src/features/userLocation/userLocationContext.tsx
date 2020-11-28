@@ -5,6 +5,7 @@ import React, {
   FC,
   useEffect,
   useContext,
+  useState,
 } from 'react'
 import {toast} from 'react-toastify'
 import {useLocalStorage} from 'hooks/useLocalStorage'
@@ -17,6 +18,7 @@ import {
 import {useFetch} from 'hooks/useFetch'
 import {City} from 'features/city/City.types'
 import {CitiesDataContext} from 'features/city/cityContext'
+import {useHistory} from 'react-router'
 
 export const UserLocationContext = createContext<{
   isSubscribed: boolean
@@ -37,6 +39,8 @@ export const UserLocationProvider: FC = ({children}) => {
     initialCoords,
     'userLocation',
   )
+  const [isInitial, setIsInitial] = useState(false)
+  const history = useHistory()
   const {addCityData, citiesData} = useContext(CitiesDataContext)
   const defaultState: UserLocationState = {
     isSubscribed: false,
@@ -76,39 +80,45 @@ export const UserLocationProvider: FC = ({children}) => {
     [dispatch],
   )
 
-  const getLocation = useCallback(() => {
-    const showError: PositionErrorCallback = error => {
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-          setIsSubscribed(false)
-          setPermStatus('denied')
-          toast.warn('User denied the request for Geolocation.')
-          break
-        case error.POSITION_UNAVAILABLE:
-          toast.warn('Location information is unavailable.')
-          break
-        case error.TIMEOUT:
-          toast.warn('The request to get user location timed out.')
-          break
-        default:
-          toast.warn('An unknown error occurred.')
+  const getLocation = useCallback(
+    (subReq?: boolean) => {
+      const showError: PositionErrorCallback = error => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            setIsSubscribed(false)
+            setPermStatus('denied')
+            toast.warn('User denied the request for Geolocation.')
+            break
+          case error.POSITION_UNAVAILABLE:
+            toast.warn('Location information is unavailable.')
+            break
+          case error.TIMEOUT:
+            toast.warn('The request to get user location timed out.')
+            break
+          default:
+            toast.warn('An unknown error occurred.')
+        }
       }
-    }
 
-    const showPosition: PositionCallback = position => {
-      setCoords({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-      })
-    }
+      const showPosition: PositionCallback = position => {
+        setCoords({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        })
+        if (typeof subReq !== 'boolean') {
+          setIsInitial(true)
+        }
+      }
 
-    if (navigator.geolocation) {
-      setIsSubscribed(true)
-      navigator.geolocation.getCurrentPosition(showPosition, showError, {
-        timeout: 7000,
-      })
-    }
-  }, [setCoords, setIsSubscribed, setPermStatus])
+      if (navigator.geolocation) {
+        setIsSubscribed(true)
+        navigator.geolocation.getCurrentPosition(showPosition, showError, {
+          timeout: 7000,
+        })
+      }
+    },
+    [setCoords, setIsSubscribed, setPermStatus],
+  )
 
   const url =
     coordinates.lat !== 0
@@ -117,13 +127,14 @@ export const UserLocationProvider: FC = ({children}) => {
   const {response: apiResponse} = useFetch<City>(url)
 
   useEffect(() => {
-    const getPermissionStatus = () => {
-      navigator.permissions
-        .query({name: 'geolocation'})
-        .then(function (permissionStatus) {
-          setPermStatus(permissionStatus.state)
-          if (permissionStatus.state === 'granted') getLocation()
-        })
+    const getPermissionStatus = async () => {
+      const permissionStatus = await navigator.permissions.query({
+        name: 'geolocation',
+      })
+      setPermStatus(permissionStatus?.state || '')
+      if (permissionStatus?.state === 'granted') {
+        getLocation(true)
+      }
     }
     getPermissionStatus()
   }, [getLocation, setPermStatus])
@@ -133,11 +144,17 @@ export const UserLocationProvider: FC = ({children}) => {
   }, [coordinates, updateCacheValues])
 
   useEffect(() => {
-    if (apiResponse) {
+    if (apiResponse?.request?.query) {
       const coordsKey = `${coordinates.lat},${coordinates.lon}`
       addCityData({cityName: coordsKey, newCity: apiResponse})
     }
   }, [addCityData, apiResponse, coordinates.lat, coordinates.lon])
+
+  useEffect(() => {
+    if (isInitial && apiResponse?.request?.query) {
+      history.push(`/city/${apiResponse.location.name}`)
+    }
+  }, [apiResponse, history, isInitial])
 
   return (
     <UserLocationContext.Provider

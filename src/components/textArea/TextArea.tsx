@@ -27,8 +27,6 @@ export const TextArea: FC<Props> = ({
         ref={inputRef}
         name={inputName}
         className={styles.textarea}
-        // className="pl-12 md:pl-16 pr-3 py-2 md:py-3 leading-5"
-        // style={{borderRadius: 30}}
         placeholder="Type here"
       />
       <p role="alert" className={classnames({hidden: !error})}>

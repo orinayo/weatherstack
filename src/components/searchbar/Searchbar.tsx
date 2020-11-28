@@ -6,11 +6,13 @@ import {useFetch} from 'hooks/useFetch'
 import {CitiesContext} from 'features/cities/citiesContext'
 import styles from './Searchbar.module.css'
 import {CitiesDataContext} from 'features/city/cityContext'
+import {useHistory} from 'react-router'
 
-export const SearchItem: FC<{response: City; handleAddCity: () => void}> = ({
-  response,
-  handleAddCity,
-}) => (
+export const SearchItem: FC<{
+  response: City
+  handleAddCity: () => void
+  handleViewCity: () => void
+}> = ({response, handleAddCity, handleViewCity}) => (
   <div tabIndex={-1} className={styles.city}>
     <span className={styles.cityName}>
       {response.location.name}, {response.location.country}
@@ -18,7 +20,7 @@ export const SearchItem: FC<{response: City; handleAddCity: () => void}> = ({
     <div role="button" onClick={handleAddCity} className={styles.button}>
       Add&nbsp;<span>+</span>
     </div>
-    <div role="button" className={styles.button}>
+    <div role="button" onClick={handleViewCity} className={styles.button}>
       View&nbsp;<span>↵</span>
     </div>
   </div>
@@ -27,6 +29,7 @@ export const SearchItem: FC<{response: City; handleAddCity: () => void}> = ({
 export const Searchbar = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [query, setQuery] = useState('')
+  const history = useHistory()
   const {loading, response, error} = useFetch<City>(
     query
       ? `http://api.weatherstack.com/current?access_key=${process.env.REACT_APP_WEATHERSTACK_API_KEY}&query=${query}`
@@ -45,6 +48,11 @@ export const Searchbar = () => {
     if (response) {
       addCity(response.request.query)
       addCityData({cityName: response.request.query, newCity: response})
+    }
+  }
+  const handleViewCity = () => {
+    if (response) {
+      history.push(`/city/${response.request.query}`)
     }
   }
 
@@ -104,6 +112,7 @@ export const Searchbar = () => {
                           ) : response ? (
                             <SearchItem
                               response={response}
+                              handleViewCity={handleViewCity}
                               handleAddCity={handleAddCity}
                             />
                           ) : error ? (

@@ -55,7 +55,7 @@ export const CityItem: FC<Props> = ({
   const {loading, response} = useFetch<City>(url)
 
   useEffect(() => {
-    if (response?.request.query) {
+    if (response?.request?.query) {
       addCityData({cityName, newCity: response})
     }
   }, [addCityData, cityName, response])
@@ -63,7 +63,7 @@ export const CityItem: FC<Props> = ({
   const cityData = citiesData[cityName]
 
   const getCityData = (() => {
-    if (cityData)
+    if (cityData?.location)
       return {
         country: cityData.location.country,
         weatherDesc: cityData.current.weather_descriptions[0].includes(',')
@@ -100,6 +100,7 @@ export const CityItem: FC<Props> = ({
               {cityName}
             </h3>
             <span
+              data-testid="weather-desc"
               className={`${styles.weatherDesc} truncate ${
                 weatherDescColors[getWeatherDesc(getCityData.weatherDesc)]
               }`}

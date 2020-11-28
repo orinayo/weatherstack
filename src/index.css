@@ -81,6 +81,14 @@ svg {
   padding-top: 0.25rem;
 }
 
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -96,6 +104,11 @@ svg {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .ml-3 {
@@ -122,6 +135,10 @@ svg {
   margin-right: 0.75rem;
 }
 
+.mr-4 {
+  margin-right: 1rem;
+}
+
 .-mt-px {
   margin-top: -1px;
 }
@@ -138,12 +155,24 @@ svg {
   justify-content: space-around;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.self-stretch {
+  align-self: stretch;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
 
 .flex-shrink-0 {
   flex-shrink: 0;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .text-center {
@@ -198,8 +227,16 @@ svg {
   line-height: 1.375;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .text-white {

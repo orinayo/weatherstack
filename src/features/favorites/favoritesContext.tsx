@@ -27,8 +27,8 @@ export const FavoritesContext = createContext<{
   favorites: [],
   isPast: false,
   isFuture: false,
-  addFavorite: newCity => {},
-  removeFavorite: city => {},
+  addFavorite: _newCity => {},
+  removeFavorite: _city => {},
   undoRemoveFavorite: () => {},
 })
 

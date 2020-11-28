@@ -4,6 +4,8 @@ import {HeartIcon} from './HeartIcon'
 import {ListIcon} from './ListIcon'
 import {OfflineIcon} from './OfflineIcon'
 import {RemoveIcon} from './RemoveIcon'
+import {EditIcon} from './EditIcon'
+
 describe('SVG Icons', () => {
   test('renders heart svg icon', () => {
     const {asFragment} = render(<HeartIcon />)
@@ -19,6 +21,10 @@ describe('SVG Icons', () => {
   })
   test('renders remove svg icon', () => {
     const {asFragment} = render(<RemoveIcon />)
+    expect(asFragment()).toMatchSnapshot()
+  })
+  test('renders remove svg icon', () => {
+    const {asFragment} = render(<EditIcon />)
     expect(asFragment()).toMatchSnapshot()
   })
 })
