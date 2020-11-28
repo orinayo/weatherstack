@@ -8,6 +8,7 @@ export const UserLocation: FC = () => {
     UserLocationContext,
   )
 
+  // @ts-ignore
   if (!navigator.geolocation)
     return (
       <p role="alert" className={styles.container}>

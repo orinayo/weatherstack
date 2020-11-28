@@ -5,9 +5,11 @@ import styles from './CityItem.module.css'
 import {useFetch} from 'hooks/useFetch'
 import {City} from 'features/city/City.types'
 import {CitiesDataContext} from 'features/city/cityContext'
+import { Link } from 'react-router-dom'
 
 type Props = {
   cityName: string
+  cityUrl: string
   onDelete: () => void
   addFavorite?: () => void
   removeFavorite: () => void
@@ -34,6 +36,7 @@ const weatherDescColors = {
 
 export const CityItem: FC<Props> = ({
   cityName,
+  cityUrl,
   onDelete,
   isFavorite,
   addFavorite,
@@ -93,6 +96,7 @@ export const CityItem: FC<Props> = ({
 
   return (
     <li className={styles.container}>
+        <Link to={cityUrl}>
       <div className={styles.contentRow}>
         <div className="flex-1 truncate mr-3">
           <div className={styles.textColumn}>
@@ -124,8 +128,9 @@ export const CityItem: FC<Props> = ({
             )}
           </h3>
           <img className={styles.image} src={getCityData.weatherImage} alt="" />
-        </div>
+        </div> 
       </div>
+        </Link>
       <div className={styles.actionBtns}>
         <div className="-mt-px flex">
           <div className={styles.favorite}>

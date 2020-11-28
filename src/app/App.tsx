@@ -21,9 +21,11 @@ const App: FC = () => {
       event.preventDefault()
       return false
     }
+    // @ts-ignore
     window.addEventListener('beforeinstallprompt', handlePwaInstallEvt)
     return () => {
-      window.removeEventListener('beforeinstallprompt', handlePwaInstallEvt)
+      // @ts-ignore
+window.removeEventListener('beforeinstallprompt', handlePwaInstallEvt)
     }
   }, [])
 

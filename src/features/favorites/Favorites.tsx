@@ -15,6 +15,7 @@ export const Favorites: FC = () => {
       favorites.map(city => (
         <CSSTransition key={city} timeout={500} classNames="move">
           <CityItem
+            cityUrl={`/city/${city}`}
             cityName={city}
             isFavorite={true}
             removeFavorite={() => {

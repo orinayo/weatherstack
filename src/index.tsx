@@ -13,6 +13,8 @@ ReactDOM.render(
       <App />
     </CitiesProvider>
   </React.StrictMode>,
+
+  // @ts-ignore
   document.getElementById('root'),
 )
 

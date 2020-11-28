@@ -37,11 +37,15 @@ export const CityData: FC = () => {
               removeCityNote({city, id: noteId})
               if (editNoteId === noteId) {
                 setEditNoteId('')
+
+                // @ts-ignore
                 inputRef.current!.value = ''
               }
             }}
             onEdit={() => {
               setEditNoteId(noteId)
+
+              // @ts-ignore
               inputRef.current!.value = cityNotes[noteId].text
             }}
           />
@@ -115,6 +119,8 @@ export const CityData: FC = () => {
           city,
           note: {
             createdAt: Date.now(),
+
+            // @ts-ignore
             text: inputRef.current?.value || '',
             isEdited: true,
             id: `${editNoteId}`,
@@ -125,6 +131,7 @@ export const CityData: FC = () => {
           city,
           note: {
             createdAt: Date.now(),
+            // @ts-ignore
             text: inputRef.current?.value || '',
             isEdited: false,
             id: uuidv4(),
@@ -132,6 +139,7 @@ export const CityData: FC = () => {
         })
       }
 
+      // @ts-ignore
       inputRef.current.value = ''
       setEditNoteId('')
     }

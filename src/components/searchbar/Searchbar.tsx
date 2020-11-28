@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, FC} from 'react'
+  import React, {useContext, useEffect, useState, FC} from 'react'
 import SearchIcon from 'assets/search-icon.png'
 import {useDebounce} from 'hooks/useDebounce'
 import {City} from 'features/city/City.types'
@@ -41,6 +41,7 @@ export const Searchbar = () => {
   const handleSearchChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ): void => {
+    // @ts-ignore
     setSearchTerm(event.target.value)
   }
 

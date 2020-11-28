@@ -82,6 +82,7 @@ export const UserLocationProvider: FC = ({children}) => {
 
   const getLocation = useCallback(
     (subReq?: boolean) => {
+      // @ts-ignore
       const showError: PositionErrorCallback = error => {
         switch (error.code) {
           case error.PERMISSION_DENIED:
@@ -100,6 +101,7 @@ export const UserLocationProvider: FC = ({children}) => {
         }
       }
 
+      // @ts-ignore
       const showPosition: PositionCallback = position => {
         setCoords({
           lat: position.coords.latitude,
@@ -110,8 +112,11 @@ export const UserLocationProvider: FC = ({children}) => {
         }
       }
 
+      // @ts-ignore
       if (navigator.geolocation) {
         setIsSubscribed(true)
+
+        // @ts-ignore
         navigator.geolocation.getCurrentPosition(showPosition, showError, {
           timeout: 7000,
         })
@@ -128,6 +133,7 @@ export const UserLocationProvider: FC = ({children}) => {
 
   useEffect(() => {
     const getPermissionStatus = async () => {
+      // @ts-ignore
       const permissionStatus = await navigator.permissions.query({
         name: 'geolocation',
       })
