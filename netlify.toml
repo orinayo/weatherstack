@@ -4,12 +4,12 @@
 	  content-type = "application/javascript"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
   from = "/feed/*"
   to = "http://api.weatherstack.com/:splat"
   status = 200
   force = true
+  
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
