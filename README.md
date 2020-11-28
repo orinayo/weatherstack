@@ -1,5 +1,5 @@
 # Weather Stack
-Url: 
+Visit live site on blissful-shirley-433520.netlify.app
 
 ## Screenshots
 ![alt-text](https://user-images.githubusercontent.com/32208591/100490953-4c139b80-3120-11eb-84ce-72f9d3794125.png)
