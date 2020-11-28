@@ -40,6 +40,7 @@ const defaultStrategy = new StaleWhileRevalidate({
 // Use a stale-while-revalidate strategy for all other requests.
 setDefaultHandler({
   handle: args => {
+    console.log(args)
     //@ts-expect-error
     if (args && args.event?.request?.method === 'GET') {
       return defaultStrategy.handle(args)

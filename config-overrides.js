@@ -4,7 +4,7 @@ module.exports = function override(config, env) {
   config.plugins = config.plugins.map(plugin => {
     if (plugin.constructor.name === 'GenerateSW') {
       return new WorkboxWebpackPlugin.InjectManifest({
-        exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
+        exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/, /netlify.toml/],
         swSrc: './src/sw.ts',
         swDest: 'service-worker.js',
       })
