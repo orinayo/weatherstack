@@ -5,7 +5,7 @@ import styles from './CityItem.module.css'
 import {useFetch} from 'hooks/useFetch'
 import {City} from 'features/city/City.types'
 import {CitiesDataContext} from 'features/city/cityContext'
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 type Props = {
   cityName: string
@@ -96,41 +96,45 @@ export const CityItem: FC<Props> = ({
 
   return (
     <li className={styles.container}>
-        <Link to={cityUrl}>
-      <div className={styles.contentRow}>
-        <div className="flex-1 truncate mr-3">
-          <div className={styles.textColumn}>
-            <h3 className="text-gray-600 text-sm leading-snug font-medium flex-shrink-0">
-              {cityName}
-            </h3>
-            <span
-              data-testid="weather-desc"
-              className={`${styles.weatherDesc} truncate ${
-                weatherDescColors[getWeatherDesc(getCityData.weatherDesc)]
-              }`}
-            >
-              {getCityData.weatherDesc}
-            </span>
+      <Link to={cityUrl}>
+        <div className={styles.contentRow}>
+          <div className="flex-1 truncate mr-3">
+            <div className={styles.textColumn}>
+              <h3 className="text-gray-600 text-sm leading-snug font-medium flex-shrink-0">
+                {cityName}
+              </h3>
+              <span
+                data-testid="weather-desc"
+                className={`${styles.weatherDesc} truncate ${
+                  weatherDescColors[getWeatherDesc(getCityData.weatherDesc)]
+                }`}
+              >
+                {getCityData.weatherDesc}
+              </span>
+            </div>
+            <p className="mt-1 text-gray-500 text-sm leading-snug truncate">
+              {getCityData.country}
+            </p>
           </div>
-          <p className="mt-1 text-gray-500 text-sm leading-snug truncate">
-            {getCityData.country}
-          </p>
+          <div className="flex">
+            <h3 className="text-gray-600 text-3xl mr-2 leading-snug font-medium truncate">
+              {getCityData.temperature}
+              {/[+-]?([1-9]\d*(\.\d*[1-9])?|0\.\d*[1-9]+)|\d+(\.\d*[1-9])?/.test(
+                getCityData.temperature,
+              ) ? (
+                <>&#8451;</>
+              ) : (
+                ''
+              )}
+            </h3>
+            <img
+              className={styles.image}
+              src={getCityData.weatherImage}
+              alt=""
+            />
+          </div>
         </div>
-        <div className="flex">
-          <h3 className="text-gray-600 text-3xl mr-2 leading-snug font-medium truncate">
-            {getCityData.temperature}
-            {/[+-]?([1-9]\d*(\.\d*[1-9])?|0\.\d*[1-9]+)|\d+(\.\d*[1-9])?/.test(
-              getCityData.temperature,
-            ) ? (
-              <>&#8451;</>
-            ) : (
-              ''
-            )}
-          </h3>
-          <img className={styles.image} src={getCityData.weatherImage} alt="" />
-        </div> 
-      </div>
-        </Link>
+      </Link>
       <div className={styles.actionBtns}>
         <div className="-mt-px flex">
           <div className={styles.favorite}>

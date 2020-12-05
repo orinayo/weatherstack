@@ -7,6 +7,7 @@ import {CitiesContext} from 'features/cities/citiesContext'
 import styles from './Searchbar.module.css'
 import {CitiesDataContext} from 'features/city/cityContext'
 import {useHistory} from 'react-router'
+import {toast} from 'react-toastify'
 
 export const SearchItem: FC<{
   response: City
@@ -46,13 +47,15 @@ export const Searchbar = () => {
   }
 
   const handleAddCity = () => {
-    if (response) {
-      addCity(response.request.query)
-      addCityData({cityName: response.request.query, newCity: response})
+    if (response?.location) {
+      addCity(response.location.name)
+      addCityData({cityName: response.location.name, newCity: response})
+      toast(`${response.location.name} has been added`)
     }
   }
+
   const handleViewCity = () => {
-    if (response) {
+    if (response?.location) {
       history.push(`/city/${response.request.query}`)
     }
   }
@@ -110,14 +113,18 @@ export const Searchbar = () => {
                               data-testid="search-loader"
                               className={styles.loader}
                             />
-                          ) : response ? (
+                          ) : response?.request ? (
                             <SearchItem
                               response={response}
                               handleViewCity={handleViewCity}
                               handleAddCity={handleAddCity}
                             />
-                          ) : error ? (
-                            <span className={styles.cityName}>{error}</span>
+                          ) : response?.['error'] || error ? (
+                            <div tabIndex={-1} className={styles.city}>
+                              <span className={styles.cityName}>
+                                {response?.['error']?.['info'] || error}
+                              </span>
+                            </div>
                           ) : null}
                         </li>
                       </ul>

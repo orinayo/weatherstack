@@ -7,7 +7,6 @@ export const UserLocation: FC = () => {
   const {permStatus, isSubscribed, userLocationData, getLocation} = useContext(
     UserLocationContext,
   )
-
   // @ts-ignore
   if (!navigator.geolocation)
     return (

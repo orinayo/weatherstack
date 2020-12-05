@@ -107,6 +107,9 @@ export const UserLocationProvider: FC = ({children}) => {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
         })
+        if (permStatus !== 'granted') {
+          setPermStatus('granted')
+        }
         if (typeof subReq !== 'boolean') {
           setIsInitial(true)
         }
@@ -122,7 +125,7 @@ export const UserLocationProvider: FC = ({children}) => {
         })
       }
     },
-    [setCoords, setIsSubscribed, setPermStatus],
+    [setCoords, setIsSubscribed, setPermStatus, permStatus],
   )
 
   const url =
@@ -143,7 +146,8 @@ export const UserLocationProvider: FC = ({children}) => {
       }
     }
     getPermissionStatus()
-  }, [getLocation, setPermStatus])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     updateCacheValues(coordinates)
